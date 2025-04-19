@@ -1,0 +1,528 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+  body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e0f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  }
+  header {
+  background-color: #a7e9ca;
+  color: #333;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  }
+  header img {
+  max-height: 50px;
+  margin-right: 1rem;
+  }
+  header h1 {
+  margin: 0;
+  margin-right: 11rem;
+  }
+  header nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  }
+  header nav ul li {
+  display: inline;
+  margin: 0 10px;
+  }
+  header nav ul li a {
+  color: #007bff;
+  text-decoration: none;
+  }
+  main {
+  flex: 1;
+  padding: 2rem;
+  text-align: center;
+  }
+  .main-content-container {
+  display: grid;
+  grid-template-areas:
+  "contact todo"
+  "contact gallery";
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  }
+  #contact {
+  text-align: left;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  grid-area: contact;
+  }
+  #contact h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  }
+  #contact p {
+  margin-bottom: 1rem;
+  }
+  form div {
+  margin-bottom: 1rem;
+  }
+  label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  input[type="tel"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
+  textarea {
+  resize: vertical;
+  }
+  button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  }
+  button[type="submit"]:hover {
+  background-color: #0056b3;
+  }
+  .error-message {
+  color: red;
+  margin-top: 0.5rem;
+  }
+  .form-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  }
+  .success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  }
+  .error-message {
+  color: red;
+  }
+  #todo {
+  text-align: left;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  grid-area: todo;
+  width: 100%;
+  box-sizing: border-box;
+  }
+  #todo h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  }
+  .todo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  }
+  #todo-input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  }
+  #add-todo-button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  }
+  #add-todo-button:hover {
+  background-color: #218838;
+  }
+  #todo-list {
+  list-style-type: none;
+  padding: 0;
+  }
+  #todo-list li {
+  background-color: #f9f9f9;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  }
+  #todo-list li span {
+  flex: 1;
+  margin-right: 1rem;
+  }
+  #todo-list li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+  }
+  #todo-list li button:hover {
+  background-color: #c82333;
+  }
+  @media screen and (max-width: 768px) {
+  .main-content-container {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+  "contact"
+  "todo"
+  "gallery";
+  }
+  #contact {
+  padding: 1rem;
+  grid-column: 1;
+  grid-row: 1;
+  }
+  header nav ul li {
+  display: block;
+  margin: 10px 0;
+  }
+  header nav ul {
+  text-align: center;
+  }
+  .todo-container {
+  align-items: center;
+  }
+  #add-todo-button {
+  align-self: center;
+  }
+  #image-gallery {
+  grid-column: 1;
+  grid-row: 3;
+  }
+  }
+  #image-gallery {
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  grid-area: gallery;
+  box-sizing: border-box;
+  }
+  #image-gallery h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  }
+  .gallery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  }
+  #image-url-input,
+  #image-alt-input,
+  #image-file-input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  }
+  .url-and-file-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  }
+  #image-url-input {
+  width: 45%;
+  margin-right: 1rem;
+  }
+  #image-file-input {
+  width: 45%;
+  }
+  .or-text {
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  }
+  #add-image-button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  }
+  #add-image-button:hover {
+  background-color: #218838;
+  }
+  .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  }
+  .gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .image-item {
+  position: relative;
+  display: inline-block;
+  }
+  .image-delete-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(220, 53, 69, 0.7);
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+  opacity: 0;
+  }
+  .image-item:hover .image-delete-button {
+  opacity: 1;
+  }
+  .image-delete-button:hover {
+  background-color: rgba(220, 53, 69, 1);
+  }
+  </style>
+ </head>
+ <body>
+  <header>
+  <img src="C:\Users\Abhishek\Desktop\ApexPlanet.png" alt="ApexPlanet Logo">
+  <h1>Contact Us</h1>
+  <nav>
+  <ul>
+  </ul>
+  </header>
+  <main>
+  <div class="main-content-container">
+  <section id="contact">
+  <h2>Get in Touch</h2>
+  <p>Please fill out the form below to contact us.</p>
+  <form id="contactForm" action="submit.php" method="POST">
+  <div>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Your Name" required>
+  <div id="name-error" class="error-message"></div>
+  </div>
+  <div>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Your Email" required>
+  <div id="email-error" class="error-message"></div>
+  </div>
+  <div>
+  <label for="phone">Phone:</label>
+  <div style="display: flex;">
+  <select id="country-code" name="country-code" style="width: 80px; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px 0 0 4px; box-sizing: border-box; font-size: 1rem;">
+  <option value="+91">+91 (India)</option>
+  <option value="+1">+1 (USA)</option>
+  <option value="+44">+44 (UK)</option>
+  <option value="+46"> +46 (Sweden)</option>
+  <option value="+61">+61 (Australia)</option>
+  <option value="+683"> +683 (Niue)</option>
+  </select>
+  <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required style="border-radius: 0 4px 4px 0; width: calc(100% - 80px);" maxlength="15">
+  </div>
+  <div id="phone-error" class="error-message"></div>
+  </div>
+  <div>
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+  <div id="message-error" class="error-message"></div>
+  </div>
+  <button type="submit">Submit</button>
+  <div id="form-message" class="form-message"></div>
+  </form>
+  </section>
+  <section id="todo">
+  <h2>My To-Do List</h2>
+  <div class="todo-container">
+  <input type="text" id="todo-input" placeholder="Add a new task...">
+  <button id="add-todo-button">Add Task</button>
+  <ul id="todo-list">
+  </ul>
+  </div>
+  </section>
+  <section id="image-gallery">
+  <h2>Image Gallery</h2>
+  <div class="gallery-container">
+  <div class="url-and-file-container">
+  <input type="text" id="image-url-input" placeholder="Enter image URL...">
+  <span class="or-text">or</span>
+  <input type="file" id="image-file-input" accept="image/*">
+  </div>
+  <input type="text" id="image-alt-input" placeholder="Enter image description...">
+  <button id="add-image-button">Add Image</button>
+  <div class="gallery">
+  </div>
+  </div>
+  </section>
+  </div>
+  </main>
+  <footer>
+  </footer>
+  <script>
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  let isValid = true;
+  document.getElementById('name-error').textContent = '';
+  document.getElementById('email-error').textContent = '';
+  document.getElementById('message-error').textContent = '';
+  document.getElementById('phone-error').textContent = '';
+  document.getElementById('form-message').textContent = '';
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (name === '') {
+  document.getElementById('name-error').textContent = 'Name is required';
+  isValid = false;
+  } else if (hasNumbers(name)) {
+  document.getElementById('name-error').textContent = 'Name cannot contain numbers';
+  isValid = false;
+  }
+  if (email === '') {
+  document.getElementById('email-error').textContent = 'Email is required';
+  isValid = false;
+  } else if (!isValidEmail(email)) {
+  document.getElementById('email-error').textContent = 'Invalid email format';
+  isValid = false;
+  }
+  if (phone === '') {
+  document.getElementById('phone-error').textContent = 'Phone number is required';
+  isValid = false;
+  } else if (!/^\d{4,15}$/.test(phone)) {
+  document.getElementById('phone-error').textContent = 'Phone number must contain only numbers and be between 4 and 15 digits';
+  isValid = false;
+  }
+  if (message === '') {
+  document.getElementById('message-error').textContent = 'Message is required';
+  isValid = false;
+  }
+  if (isValid) {
+  console.log('Form submitted successfully!');
+  document.getElementById('form-message').textContent = 'Form submitted successfully!';
+  document.getElementById('form-message').className = 'form-message success-message';
+  contactForm.reset();
+  alert("Thanks for contacting us. We will contact you shortly");
+  } else {
+  document.getElementById('form-message').textContent = 'Please fix the errors in the form.';
+  document.getElementById('form-message').className = 'form-message error-message';
+  }
+  });
+  function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+  }
+  function hasNumbers(str) {
+  return /\d/.test(str);
+  }
+  const todoInput = document.getElementById('todo-input');
+  const addTodoButton = document.getElementById('add-todo-button');
+  const todoList = document.getElementById('todo-list');
+  addTodoButton.addEventListener('click', () => {
+  const taskText = todoInput.value.trim();
+  if (taskText !== '') {
+  const listItem = document.createElement('li');
+  const taskSpan = document.createElement('span');
+  taskSpan.textContent = taskText;
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.addEventListener('click', () => {
+  listItem.remove();
+  });
+  listItem.appendChild(taskSpan);
+  listItem.appendChild(deleteButton);
+  todoList.appendChild(listItem);
+  todoInput.value = '';
+  }
+  });
+  const imageURLInput = document.getElementById('image-url-input');
+  const imageAltInput = document.getElementById('image-alt-input');
+  const imageFileInput = document.getElementById('image-file-input');
+  const addImageButton = document.getElementById('add-image-button');
+  const gallery = document.querySelector('.gallery');
+  addImageButton.addEventListener('click', () => {
+  const imageURL = imageURLInput.value.trim();
+  const imageAlt = imageAltInput.value.trim();
+  const imageFile = imageFileInput.files[0];
+  if ((imageURL || imageFile) && imageAlt) {
+  let imageSource = '';
+  if (imageURL) {
+  imageSource = imageURL;
+  } else if (imageFile) {
+  imageSource = URL.createObjectURL(imageFile);
+  }
+  const imageItem = document.createElement('div');
+  imageItem.className = 'image-item';
+  const img = document.createElement('img');
+  img.src = imageSource;
+  img.alt = imageAlt;
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.className = 'image-delete-button';
+  deleteButton.addEventListener('click', () => {
+  imageItem.remove();
+  });
+  imageItem.appendChild(img);
+  imageItem.appendChild(deleteButton);
+  gallery.appendChild(imageItem);
+  imageURLInput.value = '';
+  imageAltInput.value = '';
+  imageFileInput.value = '';
+  } else {
+  alert('Please enter both image URL/file and image description.');
+  }
+  });
+  </script>
+ </body>
+ </html>
+ 
